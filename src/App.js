@@ -1,15 +1,15 @@
 import React from "react";
 import "./style/master.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Landing from "./components/pages/Landing";
-import CreateAnswer from "./components/pages/CreateAnswer";
-import CreateImagery from "./components/pages/CreateImagery";
-import ReviewImagery from "./components/pages/ReviewImagery";
-import ReviewAnswer from "./components/pages/ReviewAnswer";
-import ReviewEmpty from "./components/pages/ReviewEmpty";
-import AllCards from "./components/pages/AllCards";
-import Edit from "./components/pages/Edit";
-import NotFound from "./components/pages/NotFound";
+import Landing from "src/components/pages/Landing";
+import CreateAnswer from "src/components/pages/CreateAnswer";
+import CreateImagery from "src/components/pages/CreateImagery";
+import ReviewImagery from "src/components/pages/ReviewImagery";
+import ReviewAnswer from "src/components/pages/ReviewAnswer";
+import ReviewEmpty from "src/components/pages/ReviewEmpty";
+import AllCards from "src/components/pages/AllCards";
+import Edit from "src/components/pages/Edit";
+import NotFound from "src/components/pages/NotFound";
 
 function App() {
    return (
