@@ -1,5 +1,12 @@
 import React from "react";
+import Header from "../UI/Header";
+import Navigation from "../UI/Navigaiton";
 
 export default function Landing() {
-   return <h1>Landing</h1>;
+   return (
+      <>
+         <Header />
+         <Navigation />
+      </>
+   );
 }

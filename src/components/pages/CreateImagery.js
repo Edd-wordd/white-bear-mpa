@@ -11,7 +11,6 @@ export default function CreateImagery() {
          <Navigation />
 
          <h4 className="my-4 text-center text-muted">Add memorable imagery</h4>
-         {/* <!-- begin cards --> */}
          <div className="mb-2">
             <div className="card bg-primary">
                <div className="card-body secondCard">
@@ -37,8 +36,6 @@ export default function CreateImagery() {
                </div>
             </div>
          </div>
-         {/* <!-- end cards --> */}
-         {/* <!-- begin button buttons --> */}
          <p className="float-right mb-5" id="countMe2">
             0/240
          </p>
@@ -61,7 +58,6 @@ export default function CreateImagery() {
             />
             Save
          </a>
-         {/* <!-- end bottom buttons --> */}
       </AppTemplate>
    );
 }

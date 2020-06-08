@@ -1,5 +1,12 @@
 import React from "react";
+import Header from "../UI/Header";
+import Navigation from "../UI/Navigaiton";
 
 export default function NotFound() {
-   return <h1> Not found</h1>;
+   return (
+      <>
+         <Header />
+         <Navigation />
+      </>
+   );
 }

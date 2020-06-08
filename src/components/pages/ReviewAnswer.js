@@ -3,6 +3,7 @@ import thumbsUpIcon from "../../icons/thumbs-up.svg";
 import Header from "../UI/Header";
 import Navigation from "../UI/Navigaiton";
 import AppTemplate from "../UI/appTemplate";
+import { Link } from "react-router-dom";
 
 export default function ReviewAnswer() {
    return (
@@ -34,13 +35,10 @@ export default function ReviewAnswer() {
             Edit card
          </button>
          <div className="float-right">
-            <button
-               href="review-done.html"
-               className="btn btn-outline-primary mr-1"
-            >
+            <Link tp="/review-empty" className="btn btn-outline-primary mr-1">
                Needs Work
-            </button>
-            <button href="review-done.html" className="btn btn-primary">
+            </Link>
+            <Link to="/review-empty" className="btn btn-primary">
                <img
                   className="mb-2"
                   src={thumbsUpIcon}
@@ -49,7 +47,7 @@ export default function ReviewAnswer() {
                   alt=""
                />
                Got it
-            </button>
+            </Link>
          </div>
       </AppTemplate>
    );

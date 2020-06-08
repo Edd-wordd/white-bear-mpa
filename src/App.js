@@ -28,7 +28,7 @@ function App() {
                component={ReviewImagery}
             ></Route>
             <Route exact path="/review-answer" component={ReviewAnswer}></Route>
-            <Route exact path="/review-empyty" component={ReviewEmpty}></Route>
+            <Route exact path="/review-empty" component={ReviewEmpty}></Route>
             <Route exact path="/all-cards" component={AllCards}></Route>
             <Route exact path="/edit" component={Edit}></Route>
             <Route component={NotFound}></Route>
