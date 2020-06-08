@@ -1,52 +1,18 @@
 import React from "react";
-import whiteBearAppLogo from "../../img/logo-app.svg";
 import saveIcon from "../../icons/save.svg";
+import Header from "../UI/Header"
+import Navigation from "../UI/Navigaiton"
 
 export default function CreateImagery() {
    return (
       <div className="container">
          <div className="row">
             <div className="col-12 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-               <img
-                  src={whiteBearAppLogo}
-                  alt="white bear logo"
-                  width="32px;"
-               />
-               <h3 className="d-inline text-brand">White Bear</h3>
+            
+             <Header/>
+            <Navigation/>
 
-               <a
-                  href="index.html"
-                  className="float-right btn btn-link btn-navagation"
-               >
-                  Log Out
-               </a>
-               {/* <!-- end top logo and log out button --> */}
-               {/* <!-- top nav buttons --> */}
-               <div
-                  className="btn-group d-flex"
-                  role="navigation"
-                  aria-label="navigation"
-               >
-                  <a
-                     href="create-answer.html"
-                     className="btn btn-secondary btn-navigation tab-active"
-                  >
-                     Create new
-                  </a>
-                  <a
-                     href="review-imagery.html"
-                     className="btn btn-secondary tab-separator btn-navigation"
-                  >
-                     Review
-                  </a>
-                  <a
-                     href="all-cards.html"
-                     className="btn btn-secondary tab-separator btn-navigation"
-                  >
-                     All cards
-                  </a>
-               </div>
-               {/* <!-- end top nav buttons --> */}
+               
                <h4 className="my-4 text-center text-muted">
                   Add memorable imagery
                </h4>
@@ -58,7 +24,7 @@ export default function CreateImagery() {
                            id="imagery-create"
                            className="w-100 d-sm-nope"
                            rows="11"
-                           autofocus="autofocus"
+                           autoFocus={true}
                         ></textarea>
                         <textarea
                            className="w-100 d-nope d-sm-block"

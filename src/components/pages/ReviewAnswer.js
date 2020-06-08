@@ -1,56 +1,19 @@
 import React from "react";
 import thumbsUpIcon from "../../icons/thumbs-up.svg";
-import whiteBearAppLogo from "../../img/logo-app.svg";
+import Header from "../UI/Header"
+import Navigation from "../UI/Navigaiton"
+
 
 export default function ReviewAnswer() {
    return (
       <div className="container">
          <div className="row">
             <div className="col-12 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-               {/* <!-- top bear logo and log out button --> */}
-               <img
-                  src={whiteBearAppLogo}
-                  alt="white bear logo"
-                  width="32px;"
-                  atl="white bear logo"
-               />
-               <h3 className="d-inline text-brand">White Bear</h3>
+               <Header/>
+               <Navigation/>
+               <div className="mb5"></div>
 
-               <a
-                  href="index.html"
-                  className="float-right btn btn-link btn-navagation"
-               >
-                  Log Out
-               </a>
-
-               {/* <!-- end top bear logo and log out button --> */}
-               {/* <!-- top nav buttons --> */}
-               <div
-                  className="btn-group d-flex mb-5"
-                  role="navigation"
-                  aria-label="navigation"
-               >
-                  <a
-                     href="create-answer.html"
-                     className="btn btn-secondary btn-navigation"
-                  >
-                     Create new
-                  </a>
-                  <a
-                     href="review-answer.html"
-                     className="btn btn-secondary tab-separator btn-navigation tab-active"
-                  >
-                     Review
-                  </a>
-                  <a
-                     href="all-cards.html"
-                     className="btn btn-secondary tab-separator btn-navigation"
-                  >
-                     All cards
-                  </a>
-               </div>
-               {/* <!-- end top nav buttons --> */}
-               {/* <!-- begin cards --> */}
+               
                <div className="mb-5">
                   <div className="card bg-primary">
                      <div className="card-body secondCard">
@@ -71,19 +34,17 @@ export default function ReviewAnswer() {
                      </div>
                   </div>
                </div>
-               {/* <!-- end cards --> */}
-               {/* <!-- botton of the page buttons --> */}
-               <a href="edit.html" className="btn btn-link">
+               <button href="edit.html" className="btn btn-link">
                   Edit card
-               </a>
+               </button>
                <div className="float-right">
-                  <a
+                  <button
                      href="review-done.html"
                      className="btn btn-outline-primary mr-1"
                   >
                      Needs Work
-                  </a>
-                  <a href="review-done.html" className="btn btn-primary">
+                  </button>
+                  <button href="review-done.html" className="btn btn-primary">
                      <img
                         className="mb-2"
                         src={thumbsUpIcon}
@@ -92,7 +53,7 @@ export default function ReviewAnswer() {
                         alt=""
                      />
                      Got it
-                  </a>
+                  </button>
                </div>
             </div>
          </div>
