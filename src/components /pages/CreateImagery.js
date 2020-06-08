@@ -1,4 +1,6 @@
 import React from "react";
+import whiteBearAppLogo from "../../img/logo-app.svg";
+import saveIcon from "../../icons/save.svg";
 
 export default function CreateImagery() {
    return (
@@ -6,7 +8,7 @@ export default function CreateImagery() {
          <div className="row">
             <div className="col-12 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2 col-md-10 offset-md-1">
                <img
-                  src="Images/logo-app.svg"
+                  src={whiteBearAppLogo}
                   alt="white bear logo"
                   width="32px;"
                />
@@ -95,7 +97,7 @@ export default function CreateImagery() {
                >
                   <img
                      className="mb-2"
-                     src="icons /save.svg"
+                     src={saveIcon}
                      width="20px;"
                      style={{ marginTop: "5px", marginRight: "8px" }}
                      alt=""

@@ -19,7 +19,7 @@ function App() {
             <Route exact path="/create-answer" component={CreateAnswer}></Route>
             <Route
                exact
-               path="create-imagery/"
+               path="/create-imagery"
                component={CreateImagery}
             ></Route>
             <Route
