@@ -1,3 +1,5 @@
-function Welcome(props) {
-   return <h1>Hello, {props.name}</h1>;
+import React from "react";
+
+export default function Edit() {
+   return <h1>Edit</h1>;
 }
