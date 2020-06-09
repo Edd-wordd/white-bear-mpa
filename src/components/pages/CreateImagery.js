@@ -3,6 +3,7 @@ import saveIcon from "../../icons/save.svg";
 import Header from "../UI/Header";
 import Navigation from "../UI/Navigaiton";
 import AppTemplate from "../UI/appTemplate";
+import { Link } from "react-router-dom";
 
 export default function CreateImagery() {
    return (
@@ -40,14 +41,14 @@ export default function CreateImagery() {
             0/240
          </p>
          <div className="clearfix"></div>
-         <a href="landing.html" className="btn btn-link" id="backToAnswer">
+         <Link to="/create-answer" className="btn btn-link" id="backToAnswer">
             Back to answer
-         </a>
+         </Link>
 
-         <a
+         <Link
+            to="/create-answer"
             id="save-imagery"
-            href="landing.html"
-            className="btn btn-primary btn-lg float-right disabled"
+            className="btn btn-primary btn-lg float-right "
          >
             <img
                className="mb-2"
@@ -57,7 +58,7 @@ export default function CreateImagery() {
                alt=""
             />
             Save
-         </a>
+         </Link>
       </AppTemplate>
    );
 }

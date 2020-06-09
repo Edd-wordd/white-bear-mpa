@@ -69,12 +69,13 @@ export default function Landing() {
                                     </div>
                                  </div>
 
-                                 <button
+                                 <Link
+                                    to="/create-answer"
                                     id="letsGoIndex"
                                     className="btn btn-success float-right btn-block btn-lg"
                                  >
                                     Let's go!
-                                 </button>
+                                 </Link>
                               </form>
                            </div>
                            <Link
@@ -115,13 +116,13 @@ export default function Landing() {
                                     Please enter password. Must be 9 characters
                                  </div>
                               </div>
-                              <a
+                              <Link
+                                 to="/create-answer"
                                  id="loginPage"
-                                 href="create-answer.html"
                                  className="btn btn-success float-right"
                               >
                                  Log in
-                              </a>
+                              </Link>
                            </form>
                         </div>
                      </div>

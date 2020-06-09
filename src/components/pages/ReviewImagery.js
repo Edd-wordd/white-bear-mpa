@@ -20,7 +20,7 @@ export default function ReviewImagery() {
                </div>
             </div>
          </div>
-         <Link to="/create-answer" className="btn btn-link">
+         <Link to="/review-answer" className="btn btn-link">
             Previous card
          </Link>
          <div className="float-right">

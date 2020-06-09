@@ -32,7 +32,7 @@ export default function CreateAnswer() {
 
          <Link
             to="/create-imagery"
-            className="btn btn-outline-primary btn-lg float-right disabled"
+            className="btn btn-outline-primary btn-lg float-right"
             id="nextAnswer"
          >
             Next

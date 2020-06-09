@@ -88,9 +88,9 @@ export default function Edit() {
             </div>
 
             <Link
-               to="/index.html"
+               to="/all-cards"
                id="delete-card"
-               className="btn btn-outline-danger btn-lg d-none"
+               className="btn btn-outline-danger btn-lg "
             >
                Delete this card
             </Link>
