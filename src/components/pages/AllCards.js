@@ -1,6 +1,4 @@
 import React from "react";
-import Header from "../UI/Header";
-import Navigation from "../UI/Navigaiton";
 import AppTemplate from "../UI/appTemplate";
 import editIcon from "../../icons/edit.svg";
 import { Link } from "react-router-dom";
@@ -8,9 +6,6 @@ import { Link } from "react-router-dom";
 export default function AllCards() {
    return (
       <AppTemplate>
-         <Header />
-         <Navigation />
-
          <div className="row mb-3">
             <div className="col-8">
                <input

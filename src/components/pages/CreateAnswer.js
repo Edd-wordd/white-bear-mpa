@@ -1,15 +1,11 @@
 import React from "react";
-import Header from "../UI/Header";
-import Navigation from "../UI/Navigaiton";
+
 import AppTemplate from "../UI/appTemplate";
 import { Link } from "react-router-dom";
 
 export default function CreateAnswer() {
    return (
       <AppTemplate>
-         <Header />
-         <Navigation />
-
          <div className="my-2 text-center text-muted">
             <h4>Add an answer</h4>
          </div>

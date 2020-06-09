@@ -1,16 +1,12 @@
 import React from "react";
 import saveIcon from "../../icons/save.svg";
-import Header from "../UI/Header";
-import Navigation from "../UI/Navigaiton";
+
 import AppTemplate from "../UI/appTemplate";
 import { Link } from "react-router-dom";
 
 export default function CreateImagery() {
    return (
       <AppTemplate>
-         <Header />
-         <Navigation />
-
          <h4 className="my-4 text-center text-muted">Add memorable imagery</h4>
          <div className="mb-2">
             <div className="card bg-primary">
