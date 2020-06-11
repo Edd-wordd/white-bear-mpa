@@ -44,3 +44,5 @@ const memoryCards = [
       level: 1,
    },
 ];
+
+export default memoryCards;

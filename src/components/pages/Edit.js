@@ -1,8 +1,9 @@
 import React from "react";
-
+import memoryCards from "../../mock data/memory-cards";
 import AppTemplate from "../UI/appTemplate";
 import saveIcon from "../../icons/save.svg";
 import { Link } from "react-router-dom";
+const memoryCard = memoryCards[2];
 export default function Edit() {
    return (
       <AppTemplate>
@@ -11,10 +12,7 @@ export default function Edit() {
             <div className="card bg-primary">
                <div className="card-body secondCard">
                   <textarea className="w-100 d-sm-nope" rows="11">
-                     Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                     Nemo fugit quo sit minima totam dicta aspernatur inventore
-                     quibusdam quidem ut. Quibusdam quo natus neque eaque velit
-                     iure tenetur voluptate provident?
+                     {memoryCard.imagery}
                   </textarea>
                   <textarea
                      className="w-100 d-nope d-sm-block"
@@ -23,13 +21,7 @@ export default function Edit() {
                </div>
             </div>
             <div className="card bg-secondary">
-               <div className="card-body secondCard">
-                  The European languages are members of the same family. Their
-                  separate existence is a myth. For science, music, sport, etc,
-                  Europe uses the same vocabulary. The languages only differ in
-                  their grammar, their pronunciation and their most common
-                  words.
-               </div>
+               <div className="card-body secondCard">{memoryCard.answer}</div>
             </div>
          </div>
          <p className="float-right mb-5">0/300</p>
@@ -64,12 +56,13 @@ export default function Edit() {
             </p>
 
             <p className="col-5">
-               May 7, 2020 <br />
-               May 7, 2020
+               {memoryCard.createdAt}
                <br />
-               May 7, 2020
+               {memoryCard.lastAttemptAt}
                <br />
-               10
+               {memoryCard.nextAttemptAt}
+               <br />
+               {memoryCard.totalSuccessfulAttempts}
                <br />
             </p>
 
