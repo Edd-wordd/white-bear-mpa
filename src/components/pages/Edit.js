@@ -3,7 +3,9 @@ import memoryCards from "../../mock data/memory-cards";
 import AppTemplate from "../UI/appTemplate";
 import saveIcon from "../../icons/save.svg";
 import { Link } from "react-router-dom";
-const memoryCard = memoryCards[2];
+import toDisplayDate from "date-fns/format";
+// const memoryCard = memoryCards[2];
+
 export default function Edit() {
    return (
       <AppTemplate>
@@ -56,7 +58,7 @@ export default function Edit() {
             </p>
 
             <p className="col-5">
-               {memoryCard.createdAt}
+               {toDisplayDate(memoryCard.createdAt, "MMM. d, y")}
                <br />
                {memoryCard.lastAttemptAt}
                <br />
