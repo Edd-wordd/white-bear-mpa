@@ -4,7 +4,7 @@ import AppTemplate from "../UI/appTemplate";
 import saveIcon from "../../icons/save.svg";
 import { Link } from "react-router-dom";
 import toDisplayDate from "date-fns/format";
-// const memoryCard = memoryCards[2];
+const memoryCard = memoryCards[2];
 
 export default function Edit() {
    return (
@@ -52,7 +52,7 @@ export default function Edit() {
             <p className="text-muted col-4 mb-5">
                Created: <br />
                Last attempt: <br />
-               attempt: <br />
+               Next attempt: <br />
                Consecutives:
                <br />
             </p>
@@ -60,9 +60,9 @@ export default function Edit() {
             <p className="col-5">
                {toDisplayDate(memoryCard.createdAt, "MMM. d, y")}
                <br />
-               {memoryCard.lastAttemptAt}
+               {toDisplayDate(memoryCard.lastAttemptAt, "MMM. d, y")}
                <br />
-               {memoryCard.nextAttemptAt}
+               {toDisplayDate(memoryCard.nextAttemptAt, "MMM. d, y")}
                <br />
                {memoryCard.totalSuccessfulAttempts}
                <br />

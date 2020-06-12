@@ -1,6 +1,6 @@
 {
    "name": "white-bear-mpa",
-   "version": "0.1.0",
+   "version": "1.0.0",
    "private": true,
    "dependencies": {
       "@testing-library/jest-dom": "^4.2.4",
@@ -10,7 +10,7 @@
       "react": "^16.13.1",
       "react-dom": "^16.13.1",
       "react-router-dom": "^5.2.0",
-      "react-scrips": "3.4.1",
+      "react-scripts": "3.4.1",
       "sass": "^1.26.8"
    },
    "scripts": {
