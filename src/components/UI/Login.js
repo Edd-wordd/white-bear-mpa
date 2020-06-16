@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
+import hash from "object-hash";
+import { v4 as getUuid } from "uuid";
 
 export default class Login extends React.Component {
    constructor(props) {
@@ -16,7 +18,7 @@ export default class Login extends React.Component {
          hasEmailError: false,
       });
    }
-   setEmailState() {
+   async setEmailState() {
       const emailInput = document.getElementById("Login-email").value;
       const lowerCasedEmailInput = emailInput.toLowerCase();
       // eslint-disable-next-line
@@ -36,7 +38,7 @@ export default class Login extends React.Component {
       }
    }
 
-   setPasswordState(passwordInput, emailInput) {
+   async setPasswordState(passwordInput, emailInput) {
       console.log(passwordInput);
       if (passwordInput === "") {
          this.setState({
@@ -53,13 +55,25 @@ export default class Login extends React.Component {
       }
    }
 
-   validateAndVerifyUser() {
+   async validateAndVerifyUser() {
       console.log("Validate me!");
       const emailInput = document.getElementById("Login-email").value;
       const passwordInput = document.getElementById("Login-password").value;
 
-      this.setEmailState(emailInput);
-      this.setPasswordState(passwordInput);
+      await this.setEmailState(emailInput);
+      await this.setPasswordState(passwordInput, emailInput);
+      if (
+         this.state.hasEmailError === false &&
+         this.state.hasPasswordError === false
+      ) {
+         const user = {
+            id: getUuid(),
+            email: emailInput,
+            password: hash(passwordInput),
+            createdOn: Date.now(),
+         };
+         console.log(user);
+      }
    }
    render() {
       return (
