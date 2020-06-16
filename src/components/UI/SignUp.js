@@ -128,18 +128,17 @@ export default class SignUp extends React.Component {
                         className={classnames({
                            "form-control": true,
                            "is-invalid": this.state.hasPasswordError,
-                           "mb-2": true,
                         })}
                         id="password-input"
                      />
                      {this.state.hasPasswordError && (
-                        <div className="text-danger mb-2">
+                        <div className="text-danger ">
                            <small>{this.state.passwordError}</small>
                         </div>
                      )}
 
                      <button
-                        className="btn btn-success float-right btn-block btn-lg "
+                        className="btn btn-success float-right btn-block btn-lg  mt-3"
                         onClick={() => {
                            this.validateAndCreateUser();
                         }}
