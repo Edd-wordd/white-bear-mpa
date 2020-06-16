@@ -7,7 +7,6 @@ import { v4 as getUuid } from "uuid";
 export default class Login extends React.Component {
    constructor(props) {
       super(props);
-      console.log("edward is here or is he not");
       this.state = { hasLoginBeenClicked: false, emailError: "" };
    }
    loginClicked() {
