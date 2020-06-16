@@ -16,9 +16,7 @@ export default class Login extends React.Component {
          hasEmailError: false,
       });
    }
-
-   validateAndVerifyUser() {
-      console.log("Validate me!");
+   setEmailState() {
       const emailInput = document.getElementById("Login-email").value;
       const lowerCasedEmailInput = emailInput.toLowerCase();
       // eslint-disable-next-line
@@ -36,6 +34,32 @@ export default class Login extends React.Component {
       } else {
          this.setState({ emailError: "", hasEmailError: false });
       }
+   }
+
+   setPasswordState(passwordInput, emailInput) {
+      console.log(passwordInput);
+      if (passwordInput === "") {
+         this.setState({
+            passwordError: "Please enter password.",
+            hasPasswordError: true,
+         });
+      } else if (passwordInput.length < 9) {
+         this.setState({
+            passwordError: "Password must be 9 characters.",
+            hasPasswordError: true,
+         });
+      } else {
+         this.setState({ passwordError: "", hasPasswordError: false });
+      }
+   }
+
+   validateAndVerifyUser() {
+      console.log("Validate me!");
+      const emailInput = document.getElementById("Login-email").value;
+      const passwordInput = document.getElementById("Login-password").value;
+
+      this.setEmailState(emailInput);
+      this.setPasswordState(passwordInput);
    }
    render() {
       return (
@@ -63,17 +87,23 @@ export default class Login extends React.Component {
                <label htmlFor="password">Password</label>
                <input
                   type="password"
-                  className="form-control mb-5"
-                  id="password_2"
+                  className={classnames({
+                     "form-control": true,
+                     "is-invalid": this.state.hasPasswordError,
+                  })}
+                  id="Login-password"
                />
-               <div className="invalid-feedback">
-                  Please enter password. Must be 9 characters
-               </div>
+
+               {this.state.hasPasswordError && (
+                  <small className=" mb-3 text-danger">
+                     {this.state.passwordError}
+                  </small>
+               )}
 
                <Link
                   to=""
                   id="loginPage"
-                  className="btn btn-success float-right"
+                  className="btn btn-success float-right mt-4"
                   onClick={() => {
                      this.validateAndVerifyUser();
                   }}
