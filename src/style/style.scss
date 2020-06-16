@@ -109,3 +109,8 @@ textarea {
    -moz-appearance: none;
    appearance: none;
 }
+
+.disabled {
+   pointer-events: fill !important;
+   cursor: not-allowed;
+}
