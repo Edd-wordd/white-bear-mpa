@@ -102,7 +102,9 @@ export default class CreateImagery extends React.Component {
             <Link
                to="/create-answer"
                id="save-imagery"
-               className="btn btn-primary btn-lg float-right "
+               className={classnames("btn btn-primary btn-lg float-right ", {
+                  disabled: this.checkHasInvalidCharCount(),
+               })}
             >
                <img
                   className="mb-2"
