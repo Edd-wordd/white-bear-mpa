@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import classnames from "classnames";
 import hash from "object-hash";
 import { v4 as getUuid } from "uuid";
+import { withRouter } from "react-router-dom";
+import { EMAIL_REGEX } from "../../utils/helpers";
 
-export default class Login extends React.Component {
+class Login extends React.Component {
    constructor(props) {
       super(props);
       this.state = { hasLoginBeenClicked: false, emailError: "" };
@@ -20,14 +21,12 @@ export default class Login extends React.Component {
    async setEmailState() {
       const emailInput = document.getElementById("Login-email").value;
       const lowerCasedEmailInput = emailInput.toLowerCase();
-      // eslint-disable-next-line
-      const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if (emailInput === "")
          this.setState({
             emailError: "Please enter email address.",
             hasEmailError: true,
          });
-      else if (emailRegex.test(lowerCasedEmailInput) === false) {
+      else if (EMAIL_REGEX.test(lowerCasedEmailInput) === false) {
          this.setState({
             emailError: "Please enter VALID email address.",
             hasEmailError: true,
@@ -72,6 +71,7 @@ export default class Login extends React.Component {
             createdOn: Date.now(),
          };
          console.log(user);
+         this.props.history.push("/create-answer");
       }
    }
    render() {
@@ -113,8 +113,7 @@ export default class Login extends React.Component {
                   </small>
                )}
 
-               <Link
-                  to=""
+               <button
                   id="loginPage"
                   className="btn btn-success float-right mt-4"
                   onClick={() => {
@@ -122,9 +121,10 @@ export default class Login extends React.Component {
                   }}
                >
                   Log in
-               </Link>
+               </button>
             </div>
          </div>
       );
    }
 }
+export default withRouter(Login);

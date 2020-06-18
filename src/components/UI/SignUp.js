@@ -2,8 +2,10 @@ import React from "react";
 import classnames from "classnames";
 import hash from "object-hash";
 import { v4 as getUuid } from "uuid";
+import { EMAIL_REGEX } from "../../utils/helpers";
+import { withRouter } from "react-router-dom";
 
-export default class SignUp extends React.Component {
+class SignUp extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
@@ -23,14 +25,12 @@ export default class SignUp extends React.Component {
       console.log(emailInput);
       const lowerCasedEmailInput = emailInput.toLowerCase();
 
-      // eslint-disable-next-line
-      const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if (emailInput === "")
          this.setState({
             emailError: "Please enter your email address.",
             hasEmailError: true,
          });
-      else if (!emailRegex.test(String(lowerCasedEmailInput))) {
+      else if (!EMAIL_REGEX.test(String(lowerCasedEmailInput))) {
          this.setState({
             emailError: "Please enter A VALID email address.",
             hasEmailError: true,
@@ -92,6 +92,7 @@ export default class SignUp extends React.Component {
             createdOn: Date.now(),
          };
          console.log(user);
+         this.props.history.push("/create-answer");
       }
    }
    render() {
@@ -164,3 +165,4 @@ export default class SignUp extends React.Component {
       );
    }
 }
+export default withRouter(SignUp);
