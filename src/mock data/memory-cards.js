@@ -29,7 +29,7 @@ const memoryCards = [
       createdAt: 1591904522605,
       nextAttemptAt: 1591904524325,
       lastAttemptAt: 1591904525890,
-      totalSuccessfulAttempts: 0,
+      totalSuccessfulAttempts: 7,
       level: 1,
    },
    {
@@ -40,7 +40,7 @@ const memoryCards = [
       createdAt: 1591904560146,
       nextAttemptAt: 1591904561226,
       lastAttemptAt: 1591904562009,
-      totalSuccessfulAttempts: 0,
+      totalSuccessfulAttempts: 3,
       level: 1,
    },
 ];

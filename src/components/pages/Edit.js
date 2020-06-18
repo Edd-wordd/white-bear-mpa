@@ -16,6 +16,7 @@ export default class Edit extends React.Component {
       this.state = {
          answerText: memoryCard.answer,
          imageryText: memoryCard.imagery,
+         isChecked: false,
       };
    }
    checkHasInvalidCharCount() {
@@ -38,7 +39,9 @@ export default class Edit extends React.Component {
    setAnswerText(e) {
       this.setState({ answerText: e.target.value });
    }
-
+   isDeleteButtonShown() {
+      this.setState({ isChecked: !this.state.isChecked });
+   }
    render() {
       return (
          <AppTemplate>
@@ -134,6 +137,10 @@ export default class Edit extends React.Component {
                      type="checkbox"
                      className="custom-control-input"
                      id="customCheck1"
+                     checked={this.state.isChecked}
+                     onClick={() => {
+                        this.isDeleteButtonShown();
+                     }}
                   />
                   <label
                      className="custom-control-label"
@@ -142,14 +149,15 @@ export default class Edit extends React.Component {
                      Show delete button
                   </label>
                </div>
-
-               <Link
-                  to="/all-cards"
-                  id="delete-card"
-                  className="btn btn-outline-danger btn-lg "
-               >
-                  Delete this card
-               </Link>
+               {this.state.isChecked && (
+                  <Link
+                     to="/all-cards"
+                     id="delete-card"
+                     className="btn btn-outline-danger btn-lg "
+                  >
+                     Delete this card
+                  </Link>
+               )}
             </div>
          </AppTemplate>
       );

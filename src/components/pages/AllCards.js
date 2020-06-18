@@ -2,25 +2,49 @@ import React from "react";
 import AppTemplate from "../UI/appTemplate";
 import MemoryCard from "../UI/MemoryCard";
 import memoryCards from "../../mock data/memory-cards";
-import { orderBy } from "lodash";
+import orderBy from "lodash/orderBy";
 
 export default class AllCards extends React.Component {
    constructor(props) {
       super(props);
-      console.log("edward is here");
       this.state = {
-         searchInput: "",
-         displayedCards: memoryCards,
-         cardsOrderedBy: ["asec", "desc"],
-         cardsDisplayed: orderBy([...memoryCards], "asec", "desc"),
+         order: '[["createdAt"], ["desc"]]',
+         displayedMemoryCards: orderBy(memoryCards, ["createdAt"], ["desc"]),
+         allMemoryCards: orderBy(memoryCards, ["createdAt"], ["desc"]),
       };
    }
 
-   filteredCardUserInput() {
-      const userInput = document.getElementById("searchId").value;
-      console.log(userInput);
+   filterByInput() {
+      const input = document.getElementById("search-input").value;
+      const lowerCasedInput = input.toLowerCase();
+      const copyOfAllMemoryCards = [...this.state.allMemoryCards];
+      const filteredMemoryCards = copyOfAllMemoryCards.filter((memoryCard) => {
+         const lowerCasedImagery = memoryCard.imagery.toLowerCase();
+         const lowerCasedAnswer = memoryCard.answer.toLowerCase();
+         if (
+            lowerCasedImagery.includes(lowerCasedInput) ||
+            lowerCasedAnswer.includes(lowerCasedInput)
+         ) {
+            return true;
+         } else return false;
+      });
+      this.setState({ displayedMemoryCards: filteredMemoryCards }, () => {
+         this.setMemoryCards();
+      });
+   }
 
-      const filteredCardsSearch = memoryCards.filter((card) => {});
+   setOrder(e) {
+      const newOrder = e.target.value;
+      this.setState({ order: newOrder }, () => {
+         this.setMemoryCards();
+      });
+   }
+
+   setMemoryCards() {
+      const copyOfDisplayedMemoryCards = [...this.state.displayedMemoryCards];
+      const toJson = JSON.parse(this.state.order);
+      const orderedMemoryCards = orderBy(copyOfDisplayedMemoryCards, ...toJson);
+      this.setState({ displayedMemoryCards: orderedMemoryCards });
    }
 
    render() {
@@ -33,16 +57,14 @@ export default class AllCards extends React.Component {
                      type="text"
                      placeholder="Search for a word"
                      aria-label="Search"
-                     id="searchId"
+                     id="search-input"
                   />
                </div>
                <div className="col-4">
                   <button
                      className="btn btn-secondary btn-sm btn-block"
                      id="searchBtn"
-                     onClick={() => {
-                        this.getUserInput();
-                     }}
+                     onClick={() => this.filterByInput()}
                   >
                      Search
                   </button>
@@ -54,19 +76,30 @@ export default class AllCards extends React.Component {
                </div>
 
                <div className="col-6">
-                  <select className="custom-select mb-5 border">
-                     <option defaultValue>Most recent</option>
-                     <option value="1">Oldest</option>
+                  <select
+                     className="custom-select mb-5 border"
+                     value={this.state.order}
+                     onChange={(e) => this.setOrder(e)}
+                  >
+                     <option value='[["createdAt"],["desc"]]'>
+                        Most recent
+                     </option>
+                     <option value='[["createdAt"],["asc"]]'>Oldest</option>
+                     <option value='[["totalSuccessfulAttempts", "createdAt"], ["asc", "asc"]]'>
+                        Hardest
+                     </option>
+                     <option value='[["totalSuccessfulAttempts", "createdAt"], ["desc", "desc"]]'>
+                        Easiest
+                     </option>
                   </select>
                </div>
             </div>
-
-            {memoryCards.map((memorycard) => {
+            {this.state.displayedMemoryCards.map((memoryCard) => {
                return (
                   <MemoryCard
-                     answer={memorycard.answer}
-                     imagery={memorycard.imagery}
-                     key={memorycard.id}
+                     imagery={memoryCard.imagery}
+                     answer={memoryCard.answer}
+                     key={memoryCard.id}
                   />
                );
             })}
