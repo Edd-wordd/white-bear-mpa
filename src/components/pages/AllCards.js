@@ -3,6 +3,7 @@ import AppTemplate from "../UI/appTemplate";
 import MemoryCard from "../UI/MemoryCard";
 import memoryCards from "../../mock data/memory-cards";
 import orderBy from "lodash/orderBy";
+import axios from "axios";
 
 export default class AllCards extends React.Component {
    constructor(props) {
@@ -12,6 +13,16 @@ export default class AllCards extends React.Component {
          displayedMemoryCards: orderBy(memoryCards, ["createdAt"], ["desc"]),
          allMemoryCards: orderBy(memoryCards, ["createdAt"], ["desc"]),
       };
+      axios
+         .get("https://run.mocky.io/v3/fbf04238-8b9b-44f9-be89-6c2b57cd2ae8")
+         .then(function (response) {
+            // handle success
+            console.log(response);
+         })
+         .catch(function (error) {
+            // handle error
+            console.log(error);
+         });
    }
 
    filterByInput() {
