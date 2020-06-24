@@ -14,7 +14,9 @@ export default class AllCards extends React.Component {
          allMemoryCards: orderBy(memoryCards, ["createdAt"], ["desc"]),
       };
       axios
-         .get("https://run.mocky.io/v3/fbf04238-8b9b-44f9-be89-6c2b57cd2ae8")
+         .get(
+            "https://raw.githubusercontent.com/Edd-wordd/white-bear-mpa/master/src/mock%20data/memory-card.JSON"
+         )
          .then(function (response) {
             // handle success
             console.log(response);
