@@ -8,25 +8,33 @@ import { connect } from "react-redux";
 class ReviewImagery extends React.Component {
    constructor(props) {
       super(props);
-      axios
-         .get(
-            "https://raw.githubusercontent.com/Edd-wordd/white-bear-mpa/master/src/mock%20data/memory-card.JSON"
-         )
-         .then(function (res) {
-            // handle success
-            console.log(res);
-            props.dispatch({
-               type: actions.STORE_QUEUED_CARDS,
-               payload: res.data,
+      if (props.queue.cards.length === 0) {
+         axios
+            .get(
+               "https://raw.githubusercontent.com/Edd-wordd/white-bear-mpa/master/src/mock%20data/memory-card.JSON"
+            )
+            .then(function (res) {
+               // handle success
+               console.log(res);
+               props.dispatch({
+                  type: actions.STORE_QUEUED_CARDS,
+                  payload: res.data,
+               });
+            })
+            .catch(function (error) {
+               // handle error
+               console.log(error);
             });
-         })
-         .catch(function (error) {
-            // handle error
-            console.log(error);
-         });
+      }
    }
+
+   goToPrevCard() {
+      this.props.dispatch({ type: actions.DECREMENT_QUEUE_INDEX });
+      this.props.history.push("/review-answer");
+   }
+
    render() {
-      const memoryCard = this.props.queuedCards[this.props.indexOfCurrentCard];
+      const memoryCard = this.props.queue.cards[this.props.queue.index];
       console.log(memoryCard);
       return (
          <AppTemplate>
@@ -37,9 +45,18 @@ class ReviewImagery extends React.Component {
                   </div>
                </div>
             </div>
-            <Link to="/review-answer" className="btn btn-link">
-               Previous card
-            </Link>
+
+            {this.props.queue.index > 0 && (
+               <button
+                  className="btn btn-link"
+                  onClick={() => {
+                     this.goToPrevCard();
+                  }}
+               >
+                  Previous card
+               </button>
+            )}
+
             <div className="float-right">
                <Link
                   to="/review-answer"
@@ -54,8 +71,7 @@ class ReviewImagery extends React.Component {
 }
 function mapStateToProps(state) {
    return {
-      queuedCards: state.queuedCards,
-      indexOfCurrentCard: state.indexOfCurrentCard,
+      queue: state.queue,
    };
 }
 export default connect(mapStateToProps)(ReviewImagery);
