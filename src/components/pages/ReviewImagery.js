@@ -13,7 +13,7 @@ class ReviewImagery extends React.Component {
             .get(
                "https://raw.githubusercontent.com/Edd-wordd/white-bear-mpa/master/src/mock%20data/memory-card.JSON"
             )
-            .then(function (res) {
+            .then((res) => {
                // handle success
                console.log(res);
                props.dispatch({
@@ -21,7 +21,7 @@ class ReviewImagery extends React.Component {
                   payload: res.data,
                });
             })
-            .catch(function (error) {
+            .catch((error) => {
                // handle error
                console.log(error);
             });

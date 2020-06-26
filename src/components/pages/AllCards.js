@@ -1,7 +1,6 @@
 import React from "react";
 import AppTemplate from "../UI/appTemplate";
 import MemoryCard from "../UI/MemoryCard";
-import memoryCards from "../../mock data/memory-cards";
 import orderBy from "lodash/orderBy";
 import axios from "axios";
 
@@ -10,18 +9,30 @@ export default class AllCards extends React.Component {
       super(props);
       this.state = {
          order: '[["createdAt"], ["desc"]]',
-         displayedMemoryCards: orderBy(memoryCards, ["createdAt"], ["desc"]),
-         allMemoryCards: orderBy(memoryCards, ["createdAt"], ["desc"]),
+         displayedMemoryCards: [],
+         allMemoryCards: [],
       };
+   }
+
+   componentDidMount() {
       axios
          .get(
             "https://raw.githubusercontent.com/Edd-wordd/white-bear-mpa/master/src/mock%20data/memory-card.JSON"
          )
-         .then(function (response) {
+         .then((res) => {
             // handle success
-            console.log(response);
+            console.log(res.data);
+            const memoryCards = res.data;
+            this.setState({
+               displayedMemoryCards: orderBy(
+                  memoryCards,
+                  ["createdAt"],
+                  ["desc"]
+               ),
+               allMemoryCards: orderBy(memoryCards, ["createdAt"], ["desc"]),
+            });
          })
-         .catch(function (error) {
+         .catch((error) => {
             // handle error
             console.log(error);
          });

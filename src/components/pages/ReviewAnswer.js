@@ -36,6 +36,7 @@ class ReviewAnswer extends React.Component {
 
    render() {
       const memoryCard = this.props.queue.cards[this.props.queue.index];
+      console.log("hi", memoryCard);
 
       return (
          <AppTemplate>
