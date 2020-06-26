@@ -1,18 +1,16 @@
 import React from "react";
 import AppTemplate from "../UI/appTemplate";
-import memoryCards from "../../mock data/memory-cards";
 import { Link } from "react-router-dom";
 import { MAX_CARD_CHARS } from "../../utils/helpers";
 import classnames from "classnames";
 import { checkIsOver } from "../../utils/helpers";
-const memoryCard = memoryCards[2];
 
 export default class CreateAnswer extends React.Component {
    constructor(props) {
       super(props);
       console.timeLog("edwrd is here");
       this.state = {
-         answerText: memoryCard.answer,
+         answerText: "",
       };
    }
    checkHasInvalidCharCount() {

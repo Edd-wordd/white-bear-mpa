@@ -1,20 +1,17 @@
 import React from "react";
 import saveIcon from "../../icons/save.svg";
 import AppTemplate from "../UI/appTemplate";
-import memoryCards from "../../mock data/memory-cards";
 import { Link } from "react-router-dom";
 import { MAX_CARD_CHARS } from "../../utils/helpers";
 import classnames from "classnames";
 import { checkIsOver } from "../../utils/helpers";
-const memoryCard = memoryCards[2];
 
 export default class CreateImagery extends React.Component {
    constructor(props) {
       super(props);
-      console.timeLog("edwrd is here");
       this.state = {
-         answerText: memoryCard.answer,
-         imageryText: memoryCard.imagery,
+         answerText: "",
+         imageryText: "",
       };
    }
    checkHasInvalidCharCount() {
@@ -52,7 +49,6 @@ export default class CreateImagery extends React.Component {
                         className="w-100 d-sm-nope"
                         rows="7"
                         autoFocus={true}
-                        defaultValue={memoryCard.imagery}
                         onChange={(e) => this.setImageryText(e)}
                      ></textarea>
                   </div>
@@ -62,7 +58,6 @@ export default class CreateImagery extends React.Component {
                      className="card-body secondCard"
                      rows="7"
                      id="imagery-answer"
-                     defaultValue={memoryCard.answer}
                      onChange={(e) => this.setAnswerText(e)}
                   ></textarea>
                </div>

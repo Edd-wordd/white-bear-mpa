@@ -35,7 +35,6 @@ class ReviewImagery extends React.Component {
 
    render() {
       const memoryCard = this.props.queue.cards[this.props.queue.index];
-      console.log(memoryCard);
       return (
          <AppTemplate>
             <div className="mb-5">

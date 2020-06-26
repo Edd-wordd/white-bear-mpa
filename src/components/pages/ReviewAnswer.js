@@ -33,7 +33,17 @@ class ReviewAnswer extends React.Component {
          this.props.history.push("/review-imagery");
       }
    }
-
+   storeEditableCard() {
+      console.log("storing editable card");
+      const memoryCard = this.props.queue.cards[this.props.queue.index];
+      this.props.dispatch({
+         type: actions.STORE_EDITABLE_CARD,
+         payload: {
+            card: memoryCard,
+            prevRoute: "/review-answer",
+         },
+      });
+   }
    render() {
       const memoryCard = this.props.queue.cards[this.props.queue.index];
       console.log("hi", memoryCard);
@@ -52,7 +62,13 @@ class ReviewAnswer extends React.Component {
                   </div>
                </div>
             </div>
-            <Link to="/edit" className="btn btn-link">
+            <Link
+               to="/edit"
+               className="btn btn-link"
+               onClick={() => {
+                  this.storeEditableCard();
+               }}
+            >
                Edit card
             </Link>
             <div className="float-right">
