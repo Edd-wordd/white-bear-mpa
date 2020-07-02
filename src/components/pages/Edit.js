@@ -8,12 +8,14 @@ import { checkIsOver, MAX_CARD_CHARS } from "../../utils/helpers";
 import { connect } from "react-redux";
 import isEmpty from "lodash/isEmpty";
 import memoryCards from "../../mock data/memory-cards";
+import without from "lodash/without";
+import actions from "../../store/actions";
 
 const memoryCard = memoryCards[2];
 class Edit extends React.Component {
    constructor(props) {
       super(props);
-      console.timeLog("edwrd is here");
+      // console.timeLog("edwrd is here");
       this.state = {
          answerText: memoryCard.answer,
          imageryText: memoryCard.imagery,
@@ -42,6 +44,31 @@ class Edit extends React.Component {
    }
    isDeleteButtonShown() {
       this.setState({ isChecked: !this.state.isChecked });
+   }
+   deleteCardFromStore() {
+      const deletedCard = this.props.editableCard.card;
+      const cards = this.props.queue.cards;
+      const filteredCards = without(cards, deletedCard);
+      console.log(filteredCards);
+
+      this.props.dispatch({
+         type: actions.STORE_QUEUED_CARDS,
+         payload: filteredCards,
+      });
+      if (filteredCards[this.props.queue.index] === undefined) {
+         this.props.history.push("/review-empty");
+      } else {
+         this.props.history.push("/review-imagery");
+      }
+   }
+
+   changeRoute(prevRoute) {
+      if (this.props.queue.cards[this.props.queue.index] === undefined) {
+         return "/review-empty";
+      }
+      if (prevRoute === "/review-answer") {
+         return "/review-imagery";
+      }
    }
    render() {
       return (
@@ -98,11 +125,14 @@ class Edit extends React.Component {
                      </span>
                   </p>
                   <div className="clearfix"></div>
-                  <Link to="/all-cards" className="btn btn-link">
+                  <Link
+                     to={this.props.editableCard.prevRoute}
+                     className="btn btn-link"
+                  >
                      Discard changes
                   </Link>
                   <Link
-                     to="/all-cards"
+                     to={this.props.editableCard.prevRoute}
                      id="save-imagery"
                      className={classnames(
                         "btn btn-primary btn-lg float-right",
@@ -170,13 +200,15 @@ class Edit extends React.Component {
                         </label>
                      </div>
                      {this.state.isChecked && (
-                        <Link
-                           to="/all-cards"
+                        <button
                            id="delete-card"
                            className="btn btn-outline-danger btn-lg "
+                           onClick={() => {
+                              this.deleteCardFromStore();
+                           }}
                         >
                            Delete this card
-                        </Link>
+                        </button>
                      )}
                   </div>
                </>
@@ -188,6 +220,7 @@ class Edit extends React.Component {
 function mapStateToProps(state) {
    return {
       editableCard: state.editableCard,
+      queue: state.queue,
    };
 }
 export default connect(mapStateToProps)(Edit);

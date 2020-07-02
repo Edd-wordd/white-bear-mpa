@@ -4,23 +4,26 @@ import AppTemplate from "../UI/appTemplate";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import actions from "../../store/actions";
-import axios from "axios";
+// import axios from "axios";
 
 class ReviewAnswer extends React.Component {
    constructor(props) {
       super(props);
-      axios
-         .get(
-            "https://raw.githubusercontent.com/Edd-wordd/white-bear-mpa/master/src/mock%20data/memory-card.JSON"
-         )
-         .then(function (response) {
-            // handle success
-            console.log(response);
-         })
-         .catch(function (error) {
-            // handle error
-            console.log(error);
-         });
+      if (this.props.queue.cards.length === 0) {
+         this.props.history.push("/review-empty");
+      }
+      // axios
+      //    .get(
+      //       "https://raw.githubusercontent.com/Edd-wordd/white-bear-mpa/master/src/mock%20data/memory-card.JSON"
+      //    )
+      //    .then(function (response) {
+      //       // handle success
+      //       console.log(response);
+      //    })
+      //    .catch(function (error) {
+      //       // handle error
+      //       console.log(error);
+      //    });
    }
 
    goToNextCard() {
