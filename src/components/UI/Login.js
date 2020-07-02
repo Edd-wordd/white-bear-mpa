@@ -4,6 +4,7 @@ import hash from "object-hash";
 import { v4 as getUuid } from "uuid";
 import { withRouter } from "react-router-dom";
 import { EMAIL_REGEX } from "../../utils/helpers";
+import axios from "axios";
 
 class Login extends React.Component {
    constructor(props) {
@@ -73,6 +74,21 @@ class Login extends React.Component {
          console.log(user);
          this.props.history.push("/create-answer");
       }
+   }
+   componentDidMount() {
+      axios
+         .get(
+            "https://raw.githubusercontent.com/Edd-wordd/white-bear-mpa/master/src/mock%20data/memory-card.JSON"
+         )
+         .then((res) => {
+            // handle success
+            const currentUser = res.data;
+            console.log(currentUser);
+         })
+         .catch((error) => {
+            // handle error
+            console.log(error);
+         });
    }
    render() {
       return (

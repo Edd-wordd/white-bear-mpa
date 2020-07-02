@@ -119,13 +119,7 @@ export default class AllCards extends React.Component {
                </div>
             </div>
             {this.state.displayedMemoryCards.map((memoryCard) => {
-               return (
-                  <MemoryCard
-                     imagery={memoryCard.imagery}
-                     answer={memoryCard.answer}
-                     key={memoryCard.id}
-                  />
-               );
+               return <MemoryCard cards={memoryCard} key={memoryCard.id} />;
             })}
          </AppTemplate>
       );
