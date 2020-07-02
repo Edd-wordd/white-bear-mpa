@@ -2,9 +2,11 @@ import React from "react";
 import classnames from "classnames";
 import hash from "object-hash";
 import { v4 as getUuid } from "uuid";
-import { withRouter } from "react-router-dom";
 import { EMAIL_REGEX } from "../../utils/helpers";
 import axios from "axios";
+import actions from "../../store/actions";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 class Login extends React.Component {
    constructor(props) {
@@ -71,24 +73,26 @@ class Login extends React.Component {
             password: hash(passwordInput),
             createdOn: Date.now(),
          };
-         console.log(user);
+         console.log("created user object for POST", user);
+         axios
+            .get(
+               "https://raw.githubusercontent.com/Edd-wordd/white-bear-mpa/master/src/mock%20data/user.JSON"
+            )
+            .then((res) => {
+               // handle success
+               const currentUser = res.data;
+               console.log(currentUser);
+               this.props.dispatch({
+                  type: actions.UPDATE_CURRENT_USER,
+                  payload: res.data,
+               });
+            })
+            .catch((error) => {
+               // handle error
+               console.log(error);
+            });
          this.props.history.push("/create-answer");
       }
-   }
-   componentDidMount() {
-      axios
-         .get(
-            "https://raw.githubusercontent.com/Edd-wordd/white-bear-mpa/master/src/mock%20data/memory-card.JSON"
-         )
-         .then((res) => {
-            // handle success
-            const currentUser = res.data;
-            console.log(currentUser);
-         })
-         .catch((error) => {
-            // handle error
-            console.log(error);
-         });
    }
    render() {
       return (
@@ -143,4 +147,7 @@ class Login extends React.Component {
       );
    }
 }
-export default withRouter(Login);
+function mapStateToProps(state) {
+   return {};
+}
+export default withRouter(connect(mapStateToProps)(Login));
